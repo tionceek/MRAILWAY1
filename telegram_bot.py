@@ -22,4 +22,4 @@ def send_telegram_message(name, phone, address, time):
 
     # Xatolikni tekshirish (agar kerak bo‘lsa log chiqarish)
     if response.status_code != 200:
-        print("Telegram xabari yuborishda xatolik:", response.text)
+        print("Telegram xabari
