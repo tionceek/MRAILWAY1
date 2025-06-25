@@ -1,14 +1,15 @@
 import os
 import requests
+from dotenv import load_dotenv  # .env fayldan o‘qish uchun
 
+# .env fayldagi o‘zgaruvchilarni yuklash
+load_dotenv()
+
+# Token va chat ID ni olish
 TOKEN = os.getenv("TELEGRAM_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
 
 def send_telegram_message(name, phone, address, time):
-    if not TOKEN or not CHAT_ID:
-        print("❌ Telegram token yoki chat ID mavjud emas.")
-        return
-
     message = (
         f"🧖‍♀️ Yangi bron:\n"
         f"👤 Ism: {name}\n"
@@ -17,8 +18,8 @@ def send_telegram_message(name, phone, address, time):
         f"🕐 Vaqt: {time}"
     )
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
-    try:
-        response = requests.post(url, data={"chat_id": CHAT_ID, "text": message})
-        response.raise_for_status()
-    except requests.exceptions.RequestException as e:
-        print(f"❌ Telegramga yuborishda xatolik: {e}")
+    response = requests.post(url, data={"chat_id": CHAT_ID, "text": message})
+
+    # Xatolikni tekshirish (agar kerak bo‘lsa log chiqarish)
+    if response.status_code != 200:
+        print("Telegram xabari yuborishda xatolik:", response.text)
