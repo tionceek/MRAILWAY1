@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from telegram import send_telegram_message
+from telegram_bot import send_telegram_message
 from booking import book_slot, available_slots
 
 app = FastAPI()
