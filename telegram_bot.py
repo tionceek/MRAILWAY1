@@ -1,7 +1,6 @@
 import os
 import requests
 
-# Railway muhitida .env kerak emas
 TOKEN = os.environ["TELEGRAM_TOKEN"]
 CHAT_ID = os.environ["CHAT_ID"]
 
