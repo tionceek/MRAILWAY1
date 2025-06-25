@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from telegram_bot import send_telegram_message
 from booking import book_slot, available_slots
+from telegram_bot import send_telegram_message
 
 app = FastAPI()
 
@@ -9,12 +9,12 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_methods=["*"],
-    allow_headers=["*"]
+    allow_headers=["*"],
 )
 
 @app.get("/")
-def read_root():
-    return {"message": "Dr. Mushtariy API is running"}
+def home():
+    return {"message": "API is working ✅"}
 
 @app.post("/book")
 async def book(request: Request):
